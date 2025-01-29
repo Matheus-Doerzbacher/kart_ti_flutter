@@ -15,6 +15,18 @@ class TemporadaService {
     }
   }
 
+  AsyncResult<Temporada> getTemporadaAtual() async {
+    try {
+      final temporada = await _firestore
+          .collection('temporadas')
+          .where('atual', isEqualTo: true)
+          .get();
+      return Success(Temporada.fromJson(temporada.docs.first.data()));
+    } on Exception catch (e) {
+      return Failure(e);
+    }
+  }
+
   AsyncResult<Unit> createTemporada(Temporada temporada) async {
     try {
       final temporadaDoc = _firestore.collection('temporadas').doc();
