@@ -1,7 +1,7 @@
 import 'package:kart_ti_flutter/domain/model/piloto/piloto.dart';
 import 'package:kart_ti_flutter/utils/result.dart';
 
-abstract class PilotoService {
+abstract class PilotoRepository {
   Future<Result<void>> createPiloto(Piloto piloto);
 
   Future<Result<void>> updatePiloto(Piloto piloto);
