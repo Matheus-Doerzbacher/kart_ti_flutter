@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kart_ti_flutter/data/model/temporada_piloto/temporada_piloto_firebase_model.dart';
-import 'package:kart_ti_flutter/domain/model/temporada_piloto/temporada_piloto.dart';
 import 'package:kart_ti_flutter/utils/result.dart';
 
 class TemporadaPilotoService {
