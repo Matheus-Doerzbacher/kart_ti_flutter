@@ -1,4 +1,4 @@
-import 'package:kart_ti_flutter/domain/resultado_piloto/resultado_piloto.dart';
+import 'package:kart_ti_flutter/domain/model/resultado_piloto/resultado_piloto.dart';
 import 'package:kart_ti_flutter/utils/result.dart';
 
 abstract class ResultadoPilotoRepository {

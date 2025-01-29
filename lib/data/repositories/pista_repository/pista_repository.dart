@@ -1,4 +1,4 @@
-import 'package:kart_ti_flutter/domain/pista/pista.dart';
+import 'package:kart_ti_flutter/domain/model/pista/pista.dart';
 import 'package:kart_ti_flutter/utils/result.dart';
 
 abstract class PistaRepository {

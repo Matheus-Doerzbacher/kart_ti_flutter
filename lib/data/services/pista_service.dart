@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:kart_ti_flutter/domain/pista/pista.dart';
+import 'package:kart_ti_flutter/domain/model/pista/pista.dart';
 import 'package:kart_ti_flutter/utils/result.dart';
 
 class PistaService {

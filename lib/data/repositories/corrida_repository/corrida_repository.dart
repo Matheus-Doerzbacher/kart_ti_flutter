@@ -1,4 +1,4 @@
-import 'package:kart_ti_flutter/domain/corrida/corrida.dart';
+import 'package:kart_ti_flutter/domain/model/corrida/corrida.dart';
 import 'package:kart_ti_flutter/utils/result.dart';
 
 abstract class CorridaService {

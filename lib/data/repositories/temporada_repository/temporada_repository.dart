@@ -1,4 +1,4 @@
-import 'package:kart_ti_flutter/domain/temporada/temporada.dart';
+import 'package:kart_ti_flutter/domain/model/temporada/temporada.dart';
 import 'package:kart_ti_flutter/utils/result.dart';
 
 abstract class TemporadaRepository {

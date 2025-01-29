@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:kart_ti_flutter/domain/resultado_piloto/resultado_piloto.dart';
+import 'package:kart_ti_flutter/domain/model/resultado_piloto/resultado_piloto.dart';
 import 'package:kart_ti_flutter/utils/result.dart';
 
 class ResultadoPilotoService {
