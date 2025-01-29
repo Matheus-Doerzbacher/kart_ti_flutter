@@ -5,7 +5,7 @@ import 'package:result_dart/result_dart.dart';
 class TemporadaService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  AsyncResult<Temporada> getTemporada(String idTemporada) async {
+  AsyncResult<Temporada> getTemporadaById(String idTemporada) async {
     try {
       final temporada =
           await _firestore.collection('temporadas').doc(idTemporada).get();

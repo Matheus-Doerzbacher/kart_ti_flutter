@@ -5,6 +5,15 @@ import 'package:result_dart/result_dart.dart';
 class CorridaService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  AsyncResult<CorridaFirebaseModel> getCorridaById(String id) async {
+    try {
+      final corrida = await _firestore.collection('corridas').doc(id).get();
+      return Success(CorridaFirebaseModel.fromJson(corrida.data()!));
+    } on Exception catch (e) {
+      return Failure(e);
+    }
+  }
+
   AsyncResult<Unit> createCorrida(CorridaFirebaseModel corrida) async {
     try {
       final corridaDoc = _firestore.collection('corridas').doc();

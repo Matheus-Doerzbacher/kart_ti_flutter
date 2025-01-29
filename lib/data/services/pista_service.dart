@@ -5,7 +5,7 @@ import 'package:result_dart/result_dart.dart';
 class PistaService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  AsyncResult<Pista> getPista(String idPista) async {
+  AsyncResult<Pista> getPistaById(String idPista) async {
     try {
       final pista = await _firestore.collection('pistas').doc(idPista).get();
       return Success(Pista.fromJson(pista.data()!));

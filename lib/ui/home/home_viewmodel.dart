@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:flutter/foundation.dart';
 import 'package:kart_ti_flutter/data/repositories/corrida_repository/corrida_repository.dart';
 import 'package:kart_ti_flutter/data/repositories/temporada_repository/temporada_repository.dart';

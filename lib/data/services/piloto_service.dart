@@ -5,7 +5,7 @@ import 'package:result_dart/result_dart.dart';
 class PilotoService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  AsyncResult<Piloto> getPiloto(String idPiloto) async {
+  AsyncResult<Piloto> getPilotoById(String idPiloto) async {
     try {
       final piloto = await _firestore.collection('pilotos').doc(idPiloto).get();
       return Success(Piloto.fromJson(piloto.data()!));
