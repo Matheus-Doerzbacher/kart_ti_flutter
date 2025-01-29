@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'temporada_piloto.dart';
+part of 'temporada_piloto_firebase_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TemporadaPilotoImpl _$$TemporadaPilotoImplFromJson(
+_$TemporadaPilotoFirebaseModelImpl _$$TemporadaPilotoFirebaseModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$TemporadaPilotoImpl(
+    _$TemporadaPilotoFirebaseModelImpl(
       id: json['id'] as String?,
-      piloto: Piloto.fromJson(json['piloto'] as Map<String, dynamic>),
-      temporada: Temporada.fromJson(json['temporada'] as Map<String, dynamic>),
+      idPiloto: json['idPiloto'] as String,
+      idTemporada: json['idTemporada'] as String,
       pontos: (json['pontos'] as num).toInt(),
       vitorias: (json['vitorias'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$TemporadaPilotoImplToJson(
-        _$TemporadaPilotoImpl instance) =>
+Map<String, dynamic> _$$TemporadaPilotoFirebaseModelImplToJson(
+        _$TemporadaPilotoFirebaseModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'piloto': instance.piloto,
-      'temporada': instance.temporada,
+      'idPiloto': instance.idPiloto,
+      'idTemporada': instance.idTemporada,
       'pontos': instance.pontos,
       'vitorias': instance.vitorias,
     };

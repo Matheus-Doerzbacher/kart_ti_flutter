@@ -5,6 +5,15 @@ import 'package:kart_ti_flutter/utils/result.dart';
 class PistaService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  Future<Result<Pista>> getPista(String idPista) async {
+    try {
+      final pista = await _firestore.collection('pistas').doc(idPista).get();
+      return Result.ok(Pista.fromJson(pista.data()!));
+    } on Exception catch (e) {
+      return Result.error(e);
+    }
+  }
+
   Future<Result<void>> createPista(Pista pista) async {
     try {
       final pistaDoc = _firestore.collection('pistas').doc();

@@ -5,6 +5,15 @@ import 'package:kart_ti_flutter/utils/result.dart';
 class PilotoService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  Future<Result<Piloto>> getPiloto(String idPiloto) async {
+    try {
+      final piloto = await _firestore.collection('pilotos').doc(idPiloto).get();
+      return Result.ok(Piloto.fromJson(piloto.data()!));
+    } on Exception catch (e) {
+      return Result.error(e);
+    }
+  }
+
   Future<Result<void>> createPiloto(Piloto piloto) async {
     try {
       final pilotoDoc = _firestore.collection('pilotos').doc();

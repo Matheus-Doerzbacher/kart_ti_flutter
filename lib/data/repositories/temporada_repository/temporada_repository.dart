@@ -9,4 +9,6 @@ abstract class TemporadaRepository {
   Future<Result<void>> deleteTemporada(String id);
 
   Future<Result<List<Temporada>>> getTemporadas();
+
+  Future<Result<Temporada>> getTemporadaAtual();
 }

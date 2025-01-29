@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'resultado_piloto.dart';
+part of 'resultado_piloto_firebase_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,15 +14,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-ResultadoPiloto _$ResultadoPilotoFromJson(Map<String, dynamic> json) {
-  return _ResultadoPiloto.fromJson(json);
+ResultadoPilotoFirebaseModel _$ResultadoPilotoFirebaseModelFromJson(
+    Map<String, dynamic> json) {
+  return _ResultadoPilotoFirebaseModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ResultadoPiloto {
+mixin _$ResultadoPilotoFirebaseModel {
   String? get id => throw _privateConstructorUsedError;
-  Corrida get corrida => throw _privateConstructorUsedError;
-  Piloto get piloto => throw _privateConstructorUsedError;
+  String get idCorrida => throw _privateConstructorUsedError;
+  String get idPiloto => throw _privateConstructorUsedError;
   bool get isMelhorVoltaCorrida => throw _privateConstructorUsedError;
   String get melhorVolta => throw _privateConstructorUsedError;
   int get numeroDaMelhorVolta => throw _privateConstructorUsedError;
@@ -36,26 +37,28 @@ mixin _$ResultadoPiloto {
   int get totalDeVoltas => throw _privateConstructorUsedError;
   String get velocidadeMedia => throw _privateConstructorUsedError;
 
-  /// Serializes this ResultadoPiloto to a JSON map.
+  /// Serializes this ResultadoPilotoFirebaseModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of ResultadoPiloto
+  /// Create a copy of ResultadoPilotoFirebaseModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ResultadoPilotoCopyWith<ResultadoPiloto> get copyWith =>
-      throw _privateConstructorUsedError;
+  $ResultadoPilotoFirebaseModelCopyWith<ResultadoPilotoFirebaseModel>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ResultadoPilotoCopyWith<$Res> {
-  factory $ResultadoPilotoCopyWith(
-          ResultadoPiloto value, $Res Function(ResultadoPiloto) then) =
-      _$ResultadoPilotoCopyWithImpl<$Res, ResultadoPiloto>;
+abstract class $ResultadoPilotoFirebaseModelCopyWith<$Res> {
+  factory $ResultadoPilotoFirebaseModelCopyWith(
+          ResultadoPilotoFirebaseModel value,
+          $Res Function(ResultadoPilotoFirebaseModel) then) =
+      _$ResultadoPilotoFirebaseModelCopyWithImpl<$Res,
+          ResultadoPilotoFirebaseModel>;
   @useResult
   $Res call(
       {String? id,
-      Corrida corrida,
-      Piloto piloto,
+      String idCorrida,
+      String idPiloto,
       bool isMelhorVoltaCorrida,
       String melhorVolta,
       int numeroDaMelhorVolta,
@@ -68,29 +71,27 @@ abstract class $ResultadoPilotoCopyWith<$Res> {
       String tempoQualificacao,
       int totalDeVoltas,
       String velocidadeMedia});
-
-  $CorridaCopyWith<$Res> get corrida;
-  $PilotoCopyWith<$Res> get piloto;
 }
 
 /// @nodoc
-class _$ResultadoPilotoCopyWithImpl<$Res, $Val extends ResultadoPiloto>
-    implements $ResultadoPilotoCopyWith<$Res> {
-  _$ResultadoPilotoCopyWithImpl(this._value, this._then);
+class _$ResultadoPilotoFirebaseModelCopyWithImpl<$Res,
+        $Val extends ResultadoPilotoFirebaseModel>
+    implements $ResultadoPilotoFirebaseModelCopyWith<$Res> {
+  _$ResultadoPilotoFirebaseModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ResultadoPiloto
+  /// Create a copy of ResultadoPilotoFirebaseModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
-    Object? corrida = null,
-    Object? piloto = null,
+    Object? idCorrida = null,
+    Object? idPiloto = null,
     Object? isMelhorVoltaCorrida = null,
     Object? melhorVolta = null,
     Object? numeroDaMelhorVolta = null,
@@ -109,14 +110,14 @@ class _$ResultadoPilotoCopyWithImpl<$Res, $Val extends ResultadoPiloto>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      corrida: null == corrida
-          ? _value.corrida
-          : corrida // ignore: cast_nullable_to_non_nullable
-              as Corrida,
-      piloto: null == piloto
-          ? _value.piloto
-          : piloto // ignore: cast_nullable_to_non_nullable
-              as Piloto,
+      idCorrida: null == idCorrida
+          ? _value.idCorrida
+          : idCorrida // ignore: cast_nullable_to_non_nullable
+              as String,
+      idPiloto: null == idPiloto
+          ? _value.idPiloto
+          : idPiloto // ignore: cast_nullable_to_non_nullable
+              as String,
       isMelhorVoltaCorrida: null == isMelhorVoltaCorrida
           ? _value.isMelhorVoltaCorrida
           : isMelhorVoltaCorrida // ignore: cast_nullable_to_non_nullable
@@ -167,40 +168,21 @@ class _$ResultadoPilotoCopyWithImpl<$Res, $Val extends ResultadoPiloto>
               as String,
     ) as $Val);
   }
-
-  /// Create a copy of ResultadoPiloto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $CorridaCopyWith<$Res> get corrida {
-    return $CorridaCopyWith<$Res>(_value.corrida, (value) {
-      return _then(_value.copyWith(corrida: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ResultadoPiloto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PilotoCopyWith<$Res> get piloto {
-    return $PilotoCopyWith<$Res>(_value.piloto, (value) {
-      return _then(_value.copyWith(piloto: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$ResultadoPilotoImplCopyWith<$Res>
-    implements $ResultadoPilotoCopyWith<$Res> {
-  factory _$$ResultadoPilotoImplCopyWith(_$ResultadoPilotoImpl value,
-          $Res Function(_$ResultadoPilotoImpl) then) =
-      __$$ResultadoPilotoImplCopyWithImpl<$Res>;
+abstract class _$$ResultadoPilotoFirebaseModelImplCopyWith<$Res>
+    implements $ResultadoPilotoFirebaseModelCopyWith<$Res> {
+  factory _$$ResultadoPilotoFirebaseModelImplCopyWith(
+          _$ResultadoPilotoFirebaseModelImpl value,
+          $Res Function(_$ResultadoPilotoFirebaseModelImpl) then) =
+      __$$ResultadoPilotoFirebaseModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String? id,
-      Corrida corrida,
-      Piloto piloto,
+      String idCorrida,
+      String idPiloto,
       bool isMelhorVoltaCorrida,
       String melhorVolta,
       int numeroDaMelhorVolta,
@@ -213,29 +195,26 @@ abstract class _$$ResultadoPilotoImplCopyWith<$Res>
       String tempoQualificacao,
       int totalDeVoltas,
       String velocidadeMedia});
-
-  @override
-  $CorridaCopyWith<$Res> get corrida;
-  @override
-  $PilotoCopyWith<$Res> get piloto;
 }
 
 /// @nodoc
-class __$$ResultadoPilotoImplCopyWithImpl<$Res>
-    extends _$ResultadoPilotoCopyWithImpl<$Res, _$ResultadoPilotoImpl>
-    implements _$$ResultadoPilotoImplCopyWith<$Res> {
-  __$$ResultadoPilotoImplCopyWithImpl(
-      _$ResultadoPilotoImpl _value, $Res Function(_$ResultadoPilotoImpl) _then)
+class __$$ResultadoPilotoFirebaseModelImplCopyWithImpl<$Res>
+    extends _$ResultadoPilotoFirebaseModelCopyWithImpl<$Res,
+        _$ResultadoPilotoFirebaseModelImpl>
+    implements _$$ResultadoPilotoFirebaseModelImplCopyWith<$Res> {
+  __$$ResultadoPilotoFirebaseModelImplCopyWithImpl(
+      _$ResultadoPilotoFirebaseModelImpl _value,
+      $Res Function(_$ResultadoPilotoFirebaseModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ResultadoPiloto
+  /// Create a copy of ResultadoPilotoFirebaseModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
-    Object? corrida = null,
-    Object? piloto = null,
+    Object? idCorrida = null,
+    Object? idPiloto = null,
     Object? isMelhorVoltaCorrida = null,
     Object? melhorVolta = null,
     Object? numeroDaMelhorVolta = null,
@@ -249,19 +228,19 @@ class __$$ResultadoPilotoImplCopyWithImpl<$Res>
     Object? totalDeVoltas = null,
     Object? velocidadeMedia = null,
   }) {
-    return _then(_$ResultadoPilotoImpl(
+    return _then(_$ResultadoPilotoFirebaseModelImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      corrida: null == corrida
-          ? _value.corrida
-          : corrida // ignore: cast_nullable_to_non_nullable
-              as Corrida,
-      piloto: null == piloto
-          ? _value.piloto
-          : piloto // ignore: cast_nullable_to_non_nullable
-              as Piloto,
+      idCorrida: null == idCorrida
+          ? _value.idCorrida
+          : idCorrida // ignore: cast_nullable_to_non_nullable
+              as String,
+      idPiloto: null == idPiloto
+          ? _value.idPiloto
+          : idPiloto // ignore: cast_nullable_to_non_nullable
+              as String,
       isMelhorVoltaCorrida: null == isMelhorVoltaCorrida
           ? _value.isMelhorVoltaCorrida
           : isMelhorVoltaCorrida // ignore: cast_nullable_to_non_nullable
@@ -316,11 +295,12 @@ class __$$ResultadoPilotoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ResultadoPilotoImpl implements _ResultadoPiloto {
-  const _$ResultadoPilotoImpl(
+class _$ResultadoPilotoFirebaseModelImpl
+    implements _ResultadoPilotoFirebaseModel {
+  const _$ResultadoPilotoFirebaseModelImpl(
       {this.id,
-      required this.corrida,
-      required this.piloto,
+      required this.idCorrida,
+      required this.idPiloto,
       this.isMelhorVoltaCorrida = false,
       required this.melhorVolta,
       required this.numeroDaMelhorVolta,
@@ -334,15 +314,16 @@ class _$ResultadoPilotoImpl implements _ResultadoPiloto {
       required this.totalDeVoltas,
       required this.velocidadeMedia});
 
-  factory _$ResultadoPilotoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ResultadoPilotoImplFromJson(json);
+  factory _$ResultadoPilotoFirebaseModelImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$ResultadoPilotoFirebaseModelImplFromJson(json);
 
   @override
   final String? id;
   @override
-  final Corrida corrida;
+  final String idCorrida;
   @override
-  final Piloto piloto;
+  final String idPiloto;
   @override
   @JsonKey()
   final bool isMelhorVoltaCorrida;
@@ -371,17 +352,19 @@ class _$ResultadoPilotoImpl implements _ResultadoPiloto {
 
   @override
   String toString() {
-    return 'ResultadoPiloto(id: $id, corrida: $corrida, piloto: $piloto, isMelhorVoltaCorrida: $isMelhorVoltaCorrida, melhorVolta: $melhorVolta, numeroDaMelhorVolta: $numeroDaMelhorVolta, numeroKart: $numeroKart, pontos: $pontos, posicao: $posicao, posicaoQualificacao: $posicaoQualificacao, tempoDoPilotoDaFrente: $tempoDoPilotoDaFrente, tempoDoPilotoLider: $tempoDoPilotoLider, tempoQualificacao: $tempoQualificacao, totalDeVoltas: $totalDeVoltas, velocidadeMedia: $velocidadeMedia)';
+    return 'ResultadoPilotoFirebaseModel(id: $id, idCorrida: $idCorrida, idPiloto: $idPiloto, isMelhorVoltaCorrida: $isMelhorVoltaCorrida, melhorVolta: $melhorVolta, numeroDaMelhorVolta: $numeroDaMelhorVolta, numeroKart: $numeroKart, pontos: $pontos, posicao: $posicao, posicaoQualificacao: $posicaoQualificacao, tempoDoPilotoDaFrente: $tempoDoPilotoDaFrente, tempoDoPilotoLider: $tempoDoPilotoLider, tempoQualificacao: $tempoQualificacao, totalDeVoltas: $totalDeVoltas, velocidadeMedia: $velocidadeMedia)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ResultadoPilotoImpl &&
+            other is _$ResultadoPilotoFirebaseModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.corrida, corrida) || other.corrida == corrida) &&
-            (identical(other.piloto, piloto) || other.piloto == piloto) &&
+            (identical(other.idCorrida, idCorrida) ||
+                other.idCorrida == idCorrida) &&
+            (identical(other.idPiloto, idPiloto) ||
+                other.idPiloto == idPiloto) &&
             (identical(other.isMelhorVoltaCorrida, isMelhorVoltaCorrida) ||
                 other.isMelhorVoltaCorrida == isMelhorVoltaCorrida) &&
             (identical(other.melhorVolta, melhorVolta) ||
@@ -411,8 +394,8 @@ class _$ResultadoPilotoImpl implements _ResultadoPiloto {
   int get hashCode => Object.hash(
       runtimeType,
       id,
-      corrida,
-      piloto,
+      idCorrida,
+      idPiloto,
       isMelhorVoltaCorrida,
       melhorVolta,
       numeroDaMelhorVolta,
@@ -426,50 +409,53 @@ class _$ResultadoPilotoImpl implements _ResultadoPiloto {
       totalDeVoltas,
       velocidadeMedia);
 
-  /// Create a copy of ResultadoPiloto
+  /// Create a copy of ResultadoPilotoFirebaseModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ResultadoPilotoImplCopyWith<_$ResultadoPilotoImpl> get copyWith =>
-      __$$ResultadoPilotoImplCopyWithImpl<_$ResultadoPilotoImpl>(
-          this, _$identity);
+  _$$ResultadoPilotoFirebaseModelImplCopyWith<
+          _$ResultadoPilotoFirebaseModelImpl>
+      get copyWith => __$$ResultadoPilotoFirebaseModelImplCopyWithImpl<
+          _$ResultadoPilotoFirebaseModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ResultadoPilotoImplToJson(
+    return _$$ResultadoPilotoFirebaseModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _ResultadoPiloto implements ResultadoPiloto {
-  const factory _ResultadoPiloto(
-      {final String? id,
-      required final Corrida corrida,
-      required final Piloto piloto,
-      final bool isMelhorVoltaCorrida,
-      required final String melhorVolta,
-      required final int numeroDaMelhorVolta,
-      required final int numeroKart,
-      required final int pontos,
-      required final int posicao,
-      required final int posicaoQualificacao,
-      required final String tempoDoPilotoDaFrente,
-      required final String tempoDoPilotoLider,
-      required final String tempoQualificacao,
-      required final int totalDeVoltas,
-      required final String velocidadeMedia}) = _$ResultadoPilotoImpl;
+abstract class _ResultadoPilotoFirebaseModel
+    implements ResultadoPilotoFirebaseModel {
+  const factory _ResultadoPilotoFirebaseModel(
+          {final String? id,
+          required final String idCorrida,
+          required final String idPiloto,
+          final bool isMelhorVoltaCorrida,
+          required final String melhorVolta,
+          required final int numeroDaMelhorVolta,
+          required final int numeroKart,
+          required final int pontos,
+          required final int posicao,
+          required final int posicaoQualificacao,
+          required final String tempoDoPilotoDaFrente,
+          required final String tempoDoPilotoLider,
+          required final String tempoQualificacao,
+          required final int totalDeVoltas,
+          required final String velocidadeMedia}) =
+      _$ResultadoPilotoFirebaseModelImpl;
 
-  factory _ResultadoPiloto.fromJson(Map<String, dynamic> json) =
-      _$ResultadoPilotoImpl.fromJson;
+  factory _ResultadoPilotoFirebaseModel.fromJson(Map<String, dynamic> json) =
+      _$ResultadoPilotoFirebaseModelImpl.fromJson;
 
   @override
   String? get id;
   @override
-  Corrida get corrida;
+  String get idCorrida;
   @override
-  Piloto get piloto;
+  String get idPiloto;
   @override
   bool get isMelhorVoltaCorrida;
   @override
@@ -495,10 +481,11 @@ abstract class _ResultadoPiloto implements ResultadoPiloto {
   @override
   String get velocidadeMedia;
 
-  /// Create a copy of ResultadoPiloto
+  /// Create a copy of ResultadoPilotoFirebaseModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ResultadoPilotoImplCopyWith<_$ResultadoPilotoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ResultadoPilotoFirebaseModelImplCopyWith<
+          _$ResultadoPilotoFirebaseModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

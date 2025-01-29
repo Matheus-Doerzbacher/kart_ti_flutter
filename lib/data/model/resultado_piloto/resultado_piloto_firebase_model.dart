@@ -1,16 +1,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kart_ti_flutter/domain/model/corrida/corrida.dart';
-import 'package:kart_ti_flutter/domain/model/piloto/piloto.dart';
 
-part 'resultado_piloto.freezed.dart';
-part 'resultado_piloto.g.dart';
+part 'resultado_piloto_firebase_model.freezed.dart';
+part 'resultado_piloto_firebase_model.g.dart';
 
 @freezed
-class ResultadoPiloto with _$ResultadoPiloto {
-  const factory ResultadoPiloto({
+class ResultadoPilotoFirebaseModel with _$ResultadoPilotoFirebaseModel {
+  const factory ResultadoPilotoFirebaseModel({
     String? id,
-    required Corrida corrida,
-    required Piloto piloto,
+    required String idCorrida,
+    required String idPiloto,
     @Default(false) bool isMelhorVoltaCorrida,
     required String melhorVolta,
     required int numeroDaMelhorVolta,
@@ -23,8 +21,8 @@ class ResultadoPiloto with _$ResultadoPiloto {
     required String tempoQualificacao,
     required int totalDeVoltas,
     required String velocidadeMedia,
-  }) = _ResultadoPiloto;
+  }) = _ResultadoPilotoFirebaseModel;
 
-  factory ResultadoPiloto.fromJson(Map<String, dynamic> json) =>
-      _$ResultadoPilotoFromJson(json);
+  factory ResultadoPilotoFirebaseModel.fromJson(Map<String, dynamic> json) =>
+      _$ResultadoPilotoFirebaseModelFromJson(json);
 }

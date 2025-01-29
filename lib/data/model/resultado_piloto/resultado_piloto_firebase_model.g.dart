@@ -1,17 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'resultado_piloto.dart';
+part of 'resultado_piloto_firebase_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ResultadoPilotoImpl _$$ResultadoPilotoImplFromJson(
+_$ResultadoPilotoFirebaseModelImpl _$$ResultadoPilotoFirebaseModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$ResultadoPilotoImpl(
+    _$ResultadoPilotoFirebaseModelImpl(
       id: json['id'] as String?,
-      corrida: Corrida.fromJson(json['corrida'] as Map<String, dynamic>),
-      piloto: Piloto.fromJson(json['piloto'] as Map<String, dynamic>),
+      idCorrida: json['idCorrida'] as String,
+      idPiloto: json['idPiloto'] as String,
       isMelhorVoltaCorrida: json['isMelhorVoltaCorrida'] as bool? ?? false,
       melhorVolta: json['melhorVolta'] as String,
       numeroDaMelhorVolta: (json['numeroDaMelhorVolta'] as num).toInt(),
@@ -26,12 +26,12 @@ _$ResultadoPilotoImpl _$$ResultadoPilotoImplFromJson(
       velocidadeMedia: json['velocidadeMedia'] as String,
     );
 
-Map<String, dynamic> _$$ResultadoPilotoImplToJson(
-        _$ResultadoPilotoImpl instance) =>
+Map<String, dynamic> _$$ResultadoPilotoFirebaseModelImplToJson(
+        _$ResultadoPilotoFirebaseModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'corrida': instance.corrida,
-      'piloto': instance.piloto,
+      'idCorrida': instance.idCorrida,
+      'idPiloto': instance.idPiloto,
       'isMelhorVoltaCorrida': instance.isMelhorVoltaCorrida,
       'melhorVolta': instance.melhorVolta,
       'numeroDaMelhorVolta': instance.numeroDaMelhorVolta,

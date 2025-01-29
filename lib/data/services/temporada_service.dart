@@ -5,6 +5,16 @@ import 'package:kart_ti_flutter/utils/result.dart';
 class TemporadaService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  Future<Result<Temporada>> getTemporada(String idTemporada) async {
+    try {
+      final temporada =
+          await _firestore.collection('temporadas').doc(idTemporada).get();
+      return Result.ok(Temporada.fromJson(temporada.data()!));
+    } on Exception catch (e) {
+      return Result.error(e);
+    }
+  }
+
   Future<Result<void>> createTemporada(Temporada temporada) async {
     try {
       final temporadaDoc = _firestore.collection('temporadas').doc();

@@ -1,4 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:kart_ti_flutter/domain/model/piloto/piloto.dart';
+import 'package:kart_ti_flutter/domain/model/temporada/temporada.dart';
 
 part 'temporada_piloto.freezed.dart';
 part 'temporada_piloto.g.dart';
@@ -7,8 +9,8 @@ part 'temporada_piloto.g.dart';
 class TemporadaPiloto with _$TemporadaPiloto {
   const factory TemporadaPiloto({
     String? id,
-    required String idPiloto,
-    required String idTemporada,
+    required Piloto piloto,
+    required Temporada temporada,
     required int pontos,
     required int vitorias,
   }) = _TemporadaPiloto;

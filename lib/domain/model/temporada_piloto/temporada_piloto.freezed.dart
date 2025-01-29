@@ -21,8 +21,8 @@ TemporadaPiloto _$TemporadaPilotoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TemporadaPiloto {
   String? get id => throw _privateConstructorUsedError;
-  String get idPiloto => throw _privateConstructorUsedError;
-  String get idTemporada => throw _privateConstructorUsedError;
+  Piloto get piloto => throw _privateConstructorUsedError;
+  Temporada get temporada => throw _privateConstructorUsedError;
   int get pontos => throw _privateConstructorUsedError;
   int get vitorias => throw _privateConstructorUsedError;
 
@@ -44,10 +44,13 @@ abstract class $TemporadaPilotoCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
-      String idPiloto,
-      String idTemporada,
+      Piloto piloto,
+      Temporada temporada,
       int pontos,
       int vitorias});
+
+  $PilotoCopyWith<$Res> get piloto;
+  $TemporadaCopyWith<$Res> get temporada;
 }
 
 /// @nodoc
@@ -66,8 +69,8 @@ class _$TemporadaPilotoCopyWithImpl<$Res, $Val extends TemporadaPiloto>
   @override
   $Res call({
     Object? id = freezed,
-    Object? idPiloto = null,
-    Object? idTemporada = null,
+    Object? piloto = null,
+    Object? temporada = null,
     Object? pontos = null,
     Object? vitorias = null,
   }) {
@@ -76,14 +79,14 @@ class _$TemporadaPilotoCopyWithImpl<$Res, $Val extends TemporadaPiloto>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      idPiloto: null == idPiloto
-          ? _value.idPiloto
-          : idPiloto // ignore: cast_nullable_to_non_nullable
-              as String,
-      idTemporada: null == idTemporada
-          ? _value.idTemporada
-          : idTemporada // ignore: cast_nullable_to_non_nullable
-              as String,
+      piloto: null == piloto
+          ? _value.piloto
+          : piloto // ignore: cast_nullable_to_non_nullable
+              as Piloto,
+      temporada: null == temporada
+          ? _value.temporada
+          : temporada // ignore: cast_nullable_to_non_nullable
+              as Temporada,
       pontos: null == pontos
           ? _value.pontos
           : pontos // ignore: cast_nullable_to_non_nullable
@@ -93,6 +96,26 @@ class _$TemporadaPilotoCopyWithImpl<$Res, $Val extends TemporadaPiloto>
           : vitorias // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
+  }
+
+  /// Create a copy of TemporadaPiloto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PilotoCopyWith<$Res> get piloto {
+    return $PilotoCopyWith<$Res>(_value.piloto, (value) {
+      return _then(_value.copyWith(piloto: value) as $Val);
+    });
+  }
+
+  /// Create a copy of TemporadaPiloto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TemporadaCopyWith<$Res> get temporada {
+    return $TemporadaCopyWith<$Res>(_value.temporada, (value) {
+      return _then(_value.copyWith(temporada: value) as $Val);
+    });
   }
 }
 
@@ -106,10 +129,15 @@ abstract class _$$TemporadaPilotoImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? id,
-      String idPiloto,
-      String idTemporada,
+      Piloto piloto,
+      Temporada temporada,
       int pontos,
       int vitorias});
+
+  @override
+  $PilotoCopyWith<$Res> get piloto;
+  @override
+  $TemporadaCopyWith<$Res> get temporada;
 }
 
 /// @nodoc
@@ -126,8 +154,8 @@ class __$$TemporadaPilotoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? idPiloto = null,
-    Object? idTemporada = null,
+    Object? piloto = null,
+    Object? temporada = null,
     Object? pontos = null,
     Object? vitorias = null,
   }) {
@@ -136,14 +164,14 @@ class __$$TemporadaPilotoImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      idPiloto: null == idPiloto
-          ? _value.idPiloto
-          : idPiloto // ignore: cast_nullable_to_non_nullable
-              as String,
-      idTemporada: null == idTemporada
-          ? _value.idTemporada
-          : idTemporada // ignore: cast_nullable_to_non_nullable
-              as String,
+      piloto: null == piloto
+          ? _value.piloto
+          : piloto // ignore: cast_nullable_to_non_nullable
+              as Piloto,
+      temporada: null == temporada
+          ? _value.temporada
+          : temporada // ignore: cast_nullable_to_non_nullable
+              as Temporada,
       pontos: null == pontos
           ? _value.pontos
           : pontos // ignore: cast_nullable_to_non_nullable
@@ -161,8 +189,8 @@ class __$$TemporadaPilotoImplCopyWithImpl<$Res>
 class _$TemporadaPilotoImpl implements _TemporadaPiloto {
   const _$TemporadaPilotoImpl(
       {this.id,
-      required this.idPiloto,
-      required this.idTemporada,
+      required this.piloto,
+      required this.temporada,
       required this.pontos,
       required this.vitorias});
 
@@ -172,9 +200,9 @@ class _$TemporadaPilotoImpl implements _TemporadaPiloto {
   @override
   final String? id;
   @override
-  final String idPiloto;
+  final Piloto piloto;
   @override
-  final String idTemporada;
+  final Temporada temporada;
   @override
   final int pontos;
   @override
@@ -182,7 +210,7 @@ class _$TemporadaPilotoImpl implements _TemporadaPiloto {
 
   @override
   String toString() {
-    return 'TemporadaPiloto(id: $id, idPiloto: $idPiloto, idTemporada: $idTemporada, pontos: $pontos, vitorias: $vitorias)';
+    return 'TemporadaPiloto(id: $id, piloto: $piloto, temporada: $temporada, pontos: $pontos, vitorias: $vitorias)';
   }
 
   @override
@@ -191,10 +219,9 @@ class _$TemporadaPilotoImpl implements _TemporadaPiloto {
         (other.runtimeType == runtimeType &&
             other is _$TemporadaPilotoImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.idPiloto, idPiloto) ||
-                other.idPiloto == idPiloto) &&
-            (identical(other.idTemporada, idTemporada) ||
-                other.idTemporada == idTemporada) &&
+            (identical(other.piloto, piloto) || other.piloto == piloto) &&
+            (identical(other.temporada, temporada) ||
+                other.temporada == temporada) &&
             (identical(other.pontos, pontos) || other.pontos == pontos) &&
             (identical(other.vitorias, vitorias) ||
                 other.vitorias == vitorias));
@@ -203,7 +230,7 @@ class _$TemporadaPilotoImpl implements _TemporadaPiloto {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, idPiloto, idTemporada, pontos, vitorias);
+      Object.hash(runtimeType, id, piloto, temporada, pontos, vitorias);
 
   /// Create a copy of TemporadaPiloto
   /// with the given fields replaced by the non-null parameter values.
@@ -225,8 +252,8 @@ class _$TemporadaPilotoImpl implements _TemporadaPiloto {
 abstract class _TemporadaPiloto implements TemporadaPiloto {
   const factory _TemporadaPiloto(
       {final String? id,
-      required final String idPiloto,
-      required final String idTemporada,
+      required final Piloto piloto,
+      required final Temporada temporada,
       required final int pontos,
       required final int vitorias}) = _$TemporadaPilotoImpl;
 
@@ -236,9 +263,9 @@ abstract class _TemporadaPiloto implements TemporadaPiloto {
   @override
   String? get id;
   @override
-  String get idPiloto;
+  Piloto get piloto;
   @override
-  String get idTemporada;
+  Temporada get temporada;
   @override
   int get pontos;
   @override

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:kart_ti_flutter/data/model/resultado_piloto/resultado_piloto_firebase_model.dart';
 import 'package:kart_ti_flutter/domain/model/resultado_piloto/resultado_piloto.dart';
 import 'package:kart_ti_flutter/utils/result.dart';
 
@@ -6,7 +7,7 @@ class ResultadoPilotoService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<Result<void>> createResultadoPiloto(
-      ResultadoPiloto resultadoPiloto) async {
+      ResultadoPilotoFirebaseModel resultadoPiloto) async {
     try {
       final resultadoPilotoDoc =
           _firestore.collection('resultadoPilotos').doc();
@@ -20,7 +21,7 @@ class ResultadoPilotoService {
   }
 
   Future<Result<void>> updateResultadoPiloto(
-      ResultadoPiloto resultadoPiloto) async {
+      ResultadoPilotoFirebaseModel resultadoPiloto) async {
     try {
       await _firestore
           .collection('resultadoPilotos')
@@ -41,8 +42,8 @@ class ResultadoPilotoService {
     }
   }
 
-  Future<Result<List<ResultadoPiloto>>> getResultadoPilotosByCorrida(
-      String idCorrida) async {
+  Future<Result<List<ResultadoPilotoFirebaseModel>>>
+      getResultadoPilotosByCorrida(String idCorrida) async {
     try {
       final resultadoPilotos = await _firestore
           .collection('resultadoPilotos')
@@ -50,7 +51,7 @@ class ResultadoPilotoService {
           .get();
       return Result.ok(
         resultadoPilotos.docs
-            .map((e) => ResultadoPiloto.fromJson(e.data()))
+            .map((e) => ResultadoPilotoFirebaseModel.fromJson(e.data()))
             .toList(),
       );
     } on Exception catch (e) {

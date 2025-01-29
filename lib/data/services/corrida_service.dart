@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:kart_ti_flutter/domain/model/corrida/corrida.dart';
+import 'package:kart_ti_flutter/data/model/corrida/corrida_firebase_model.dart';
 import 'package:kart_ti_flutter/utils/result.dart';
 
 class CorridaService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<Result<void>> createCorrida(Corrida corrida) async {
+  Future<Result<void>> createCorrida(CorridaFirebaseModel corrida) async {
     try {
       final corridaDoc = _firestore.collection('corridas').doc();
       final corridaComId = corrida.copyWith(id: corridaDoc.id);
@@ -16,7 +16,7 @@ class CorridaService {
     }
   }
 
-  Future<Result<void>> updateCorrida(Corrida corrida) async {
+  Future<Result<void>> updateCorrida(CorridaFirebaseModel corrida) async {
     try {
       await _firestore
           .collection('corridas')
@@ -37,7 +37,7 @@ class CorridaService {
     }
   }
 
-  Future<Result<List<Corrida>>> getCorridasByTemporada(
+  Future<Result<List<CorridaFirebaseModel>>> getCorridasByTemporada(
     String idTemporada,
   ) async {
     try {
@@ -46,14 +46,16 @@ class CorridaService {
           .where('idTemporada', isEqualTo: idTemporada)
           .get();
       return Result.ok(
-        corridas.docs.map((e) => Corrida.fromJson(e.data())).toList(),
+        corridas.docs
+            .map((e) => CorridaFirebaseModel.fromJson(e.data()))
+            .toList(),
       );
     } on Exception catch (e) {
       return Result.error(e);
     }
   }
 
-  Future<Result<List<Corrida>>> getCorridasByPiloto(
+  Future<Result<List<CorridaFirebaseModel>>> getCorridasByPiloto(
     String idPiloto,
   ) async {
     try {
@@ -62,7 +64,9 @@ class CorridaService {
           .where('idPiloto', isEqualTo: idPiloto)
           .get();
       return Result.ok(
-        corridas.docs.map((e) => Corrida.fromJson(e.data())).toList(),
+        corridas.docs
+            .map((e) => CorridaFirebaseModel.fromJson(e.data()))
+            .toList(),
       );
     } on Exception catch (e) {
       return Result.error(e);
