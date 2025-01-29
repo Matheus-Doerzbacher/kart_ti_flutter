@@ -1,14 +1,14 @@
 import 'package:kart_ti_flutter/domain/model/corrida/corrida.dart';
-import 'package:kart_ti_flutter/utils/result.dart';
+import 'package:result_dart/result_dart.dart';
 
 abstract class CorridaRepository {
-  Future<Result<void>> createCorrida(Corrida corrida);
+  AsyncResult<Unit> createCorrida(Corrida corrida);
 
-  Future<Result<void>> updateCorrida(Corrida corrida);
+  AsyncResult<Unit> updateCorrida(Corrida corrida);
 
-  Future<Result<void>> deleteCorrida(String id);
+  AsyncResult<Unit> deleteCorrida(String id);
 
-  Future<Result<List<Corrida>>> getCorridasByTemporada(String idTemporada);
+  AsyncResult<List<Corrida>> getCorridasByTemporada(String idTemporada);
 
-  Future<Result<List<Corrida>>> getCorridasByPiloto(String idPiloto);
+  AsyncResult<List<Corrida>> getCorridasByPiloto(String idPiloto);
 }

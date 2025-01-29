@@ -1,12 +1,12 @@
 import 'package:kart_ti_flutter/domain/model/piloto/piloto.dart';
-import 'package:kart_ti_flutter/utils/result.dart';
+import 'package:result_dart/result_dart.dart';
 
 abstract class PilotoRepository {
-  Future<Result<void>> createPiloto(Piloto piloto);
+  AsyncResult<Unit> createPiloto(Piloto piloto);
 
-  Future<Result<void>> updatePiloto(Piloto piloto);
+  AsyncResult<Unit> updatePiloto(Piloto piloto);
 
-  Future<Result<void>> deletePiloto(String id);
+  AsyncResult<Unit> deletePiloto(String id);
 
-  Future<Result<List<Piloto>>> getPilotos();
+  AsyncResult<List<Piloto>> getPilotos();
 }

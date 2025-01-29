@@ -1,14 +1,14 @@
 import 'package:kart_ti_flutter/domain/model/temporada/temporada.dart';
-import 'package:kart_ti_flutter/utils/result.dart';
+import 'package:result_dart/result_dart.dart';
 
 abstract class TemporadaRepository {
-  Future<Result<void>> createTemporada(Temporada temporada);
+  AsyncResult<Unit> createTemporada(Temporada temporada);
 
-  Future<Result<void>> updateTemporada(Temporada temporada);
+  AsyncResult<Unit> updateTemporada(Temporada temporada);
 
-  Future<Result<void>> deleteTemporada(String id);
+  AsyncResult<Unit> deleteTemporada(String id);
 
-  Future<Result<List<Temporada>>> getTemporadas();
+  AsyncResult<List<Temporada>> getTemporadas();
 
-  Future<Result<Temporada>> getTemporadaAtual();
+  AsyncResult<Temporada> getTemporadaAtual();
 }

@@ -1,60 +1,60 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kart_ti_flutter/domain/model/temporada/temporada.dart';
-import 'package:kart_ti_flutter/utils/result.dart';
+import 'package:result_dart/result_dart.dart';
 
 class TemporadaService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<Result<Temporada>> getTemporada(String idTemporada) async {
+  AsyncResult<Temporada> getTemporada(String idTemporada) async {
     try {
       final temporada =
           await _firestore.collection('temporadas').doc(idTemporada).get();
-      return Result.ok(Temporada.fromJson(temporada.data()!));
+      return Success(Temporada.fromJson(temporada.data()!));
     } on Exception catch (e) {
-      return Result.error(e);
+      return Failure(e);
     }
   }
 
-  Future<Result<void>> createTemporada(Temporada temporada) async {
+  AsyncResult<Unit> createTemporada(Temporada temporada) async {
     try {
       final temporadaDoc = _firestore.collection('temporadas').doc();
       final temporadaComId = temporada.copyWith(id: temporadaDoc.id);
       await temporadaDoc.set(temporadaComId.toJson());
-      return Result.ok(null);
+      return Success(unit);
     } on Exception catch (e) {
-      return Result.error(e);
+      return Failure(e);
     }
   }
 
-  Future<Result<void>> updateTemporada(Temporada temporada) async {
+  AsyncResult<Unit> updateTemporada(Temporada temporada) async {
     try {
       await _firestore
           .collection('temporadas')
           .doc(temporada.id)
           .update(temporada.toJson());
-      return Result.ok(null);
+      return Success(unit);
     } on Exception catch (e) {
-      return Result.error(e);
+      return Failure(e);
     }
   }
 
-  Future<Result<void>> deleteTemporada(String id) async {
+  AsyncResult<Unit> deleteTemporada(String id) async {
     try {
       await _firestore.collection('temporadas').doc(id).delete();
-      return Result.ok(null);
+      return Success(unit);
     } on Exception catch (e) {
-      return Result.error(e);
+      return Failure(e);
     }
   }
 
-  Future<Result<List<Temporada>>> getTemporadas() async {
+  AsyncResult<List<Temporada>> getTemporadas() async {
     try {
       final temporadas = await _firestore.collection('temporadas').get();
-      return Result.ok(
+      return Success(
         temporadas.docs.map((e) => Temporada.fromJson(e.data())).toList(),
       );
     } on Exception catch (e) {
-      return Result.error(e);
+      return Failure(e);
     }
   }
 }

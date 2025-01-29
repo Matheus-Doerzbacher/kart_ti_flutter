@@ -1,12 +1,12 @@
 import 'package:kart_ti_flutter/domain/model/pista/pista.dart';
-import 'package:kart_ti_flutter/utils/result.dart';
+import 'package:result_dart/result_dart.dart';
 
 abstract class PistaRepository {
-  Future<Result<void>> createPista(Pista pista);
+  AsyncResult<Unit> createPista(Pista pista);
 
-  Future<Result<void>> updatePista(Pista pista);
+  AsyncResult<Unit> updatePista(Pista pista);
 
-  Future<Result<void>> deletePista(String id);
+  AsyncResult<Unit> deletePista(String id);
 
-  Future<Result<List<Pista>>> getPistas();
+  AsyncResult<List<Pista>> getPistas();
 }
