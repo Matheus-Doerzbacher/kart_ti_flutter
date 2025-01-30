@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kart_ti_flutter/ui/core/app_bar_custom.dart';
 import 'package:kart_ti_flutter/ui/home/home_viewmodel.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,9 +18,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Page'),
-      ),
+      appBar: AppBarCustom(),
       body: Column(
         children: [
           ListenableBuilder(
@@ -28,53 +27,52 @@ class _HomePageState extends State<HomePage> {
               if (widget.viewModel.loadCorridas.running) {
                 return const CircularProgressIndicator();
               }
-              return Expanded(
-                child: ListView.builder(
-                  itemCount: widget.viewModel.corridas.length,
-                  itemBuilder: (context, index) {
-                    final corrida = widget.viewModel.corridas[index];
-                    return ListTile(
-                      title: Text(corrida.pilotoGanhador?.nome ?? ''),
-                      subtitle: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                corrida.resultados?[0].posicao.toString() ?? '',
-                              ),
-                              Text(' - '),
-                              Text(
-                                corrida.resultados?[0].piloto.nome ?? '',
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                corrida.resultados?[1].posicao.toString() ?? '',
-                              ),
-                              Text(' - '),
-                              Text(
-                                corrida.resultados?[1].piloto.nome ?? '',
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                corrida.resultados?[2].posicao.toString() ?? '',
-                              ),
-                              Text(' - '),
-                              Text(
-                                corrida.resultados?[2].piloto.nome ?? '',
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
+              return ListView.builder(
+                shrinkWrap: true,
+                itemCount: widget.viewModel.corridas.length,
+                itemBuilder: (context, index) {
+                  final corrida = widget.viewModel.corridas[index];
+                  return ListTile(
+                    title: Text(corrida.pilotoGanhador?.nome ?? ''),
+                    subtitle: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              corrida.resultados?[0].posicao.toString() ?? '',
+                            ),
+                            Text(' - '),
+                            Text(
+                              corrida.resultados?[0].piloto.nome ?? '',
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              corrida.resultados?[1].posicao.toString() ?? '',
+                            ),
+                            Text(' - '),
+                            Text(
+                              corrida.resultados?[1].piloto.nome ?? '',
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              corrida.resultados?[2].posicao.toString() ?? '',
+                            ),
+                            Text(' - '),
+                            Text(
+                              corrida.resultados?[2].piloto.nome ?? '',
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                },
               );
             },
           ),

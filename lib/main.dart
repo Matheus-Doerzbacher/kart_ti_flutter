@@ -24,6 +24,8 @@ void main() async {
   );
 }
 
+Color corPrimaria = Colors.teal;
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -31,9 +33,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: corPrimaria).copyWith(
+          primary: corPrimaria,
+        ),
         useMaterial3: true,
       ),
       home: HomePage(
