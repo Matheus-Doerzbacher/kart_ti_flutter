@@ -7,6 +7,7 @@ import 'package:kart_ti_flutter/data/services/resultado_piloto_service.dart';
 import 'package:kart_ti_flutter/data/services/temporada_service.dart';
 import 'package:kart_ti_flutter/domain/model/corrida/corrida.dart';
 import 'package:kart_ti_flutter/domain/model/resultado_piloto/resultado_piloto.dart';
+import 'package:logging/logging.dart';
 import 'package:result_dart/result_dart.dart';
 
 class ResultadoPilotoRepositoryRemote extends ResultadoPilotoRepository {
@@ -27,6 +28,8 @@ class ResultadoPilotoRepositoryRemote extends ResultadoPilotoRepository {
         _pilotoService = pilotoService,
         _temporadaService = temporadaService,
         _pistaService = pistaService;
+
+  final _log = Logger('ResultadoPilotoRepositoryRemote');
 
   @override
   AsyncResult<Unit> createResultadoPiloto(
@@ -51,6 +54,7 @@ class ResultadoPilotoRepositoryRemote extends ResultadoPilotoRepository {
       return _resultadoPilotoService
           .createResultadoPiloto(resultadoPilotoFirebase);
     } on Exception catch (e) {
+      _log.severe('Erro ao criar resultado piloto', e);
       return Failure(e);
     }
   }
@@ -60,6 +64,7 @@ class ResultadoPilotoRepositoryRemote extends ResultadoPilotoRepository {
     try {
       return _resultadoPilotoService.deleteResultadoPiloto(id);
     } on Exception catch (e) {
+      _log.severe('Erro ao deletar resultado piloto', e);
       return Failure(e);
     }
   }
@@ -79,6 +84,7 @@ class ResultadoPilotoRepositoryRemote extends ResultadoPilotoRepository {
 
       return Success(resultados);
     } on Exception catch (e) {
+      _log.severe('Erro ao buscar resultado pilotos por corrida', e);
       return Failure(e);
     }
   }
@@ -86,50 +92,57 @@ class ResultadoPilotoRepositoryRemote extends ResultadoPilotoRepository {
   Future<ResultadoPiloto> _getResultadoPiloto(
     ResultadoPilotoFirebaseModel resultadoPilotoFirebase,
   ) async {
-    final corridaFirebase = await _corridaService
-        .getCorridaById(resultadoPilotoFirebase.idCorrida)
-        .getOrThrow();
+    try {
+      final corridaFirebase = await _corridaService
+          .getCorridaById(resultadoPilotoFirebase.idCorrida)
+          .getOrThrow();
 
-    final corridaPiloto = await _pilotoService
-        .getPilotoById(resultadoPilotoFirebase.idPiloto)
-        .getOrThrow();
+      final corridaPiloto = await _pilotoService
+          .getPilotoById(resultadoPilotoFirebase.idPiloto)
+          .getOrNull();
 
-    final corridaPista =
-        await _pistaService.getPistaById(corridaFirebase.idPista).getOrThrow();
+      final corridaPista = await _pistaService
+          .getPistaById(corridaFirebase.idPista)
+          .getOrThrow();
 
-    final temporada = await _temporadaService
-        .getTemporadaById(corridaFirebase.idTemporada)
-        .getOrThrow();
+      final temporada = await _temporadaService
+          .getTemporadaById(corridaFirebase.idTemporada)
+          .getOrThrow();
 
-    final corrida = Corrida(
-        piloto: corridaPiloto,
+      final corrida = Corrida(
+        pilotoGanhador: corridaPiloto,
         pista: corridaPista,
         temporada: temporada,
         tempo: corridaFirebase.tempo,
         voltas: corridaFirebase.voltas,
-        data: corridaFirebase.data);
+        data: corridaFirebase.data,
+      );
 
-    final piloto = await _pilotoService
-        .getPilotoById(resultadoPilotoFirebase.idPiloto)
-        .getOrThrow();
+      final piloto = await _pilotoService
+          .getPilotoById(resultadoPilotoFirebase.idPiloto)
+          .getOrThrow();
 
-    return ResultadoPiloto(
-      id: resultadoPilotoFirebase.id,
-      corrida: corrida,
-      piloto: piloto,
-      isMelhorVoltaCorrida: resultadoPilotoFirebase.isMelhorVoltaCorrida,
-      melhorVolta: resultadoPilotoFirebase.melhorVolta,
-      numeroDaMelhorVolta: resultadoPilotoFirebase.numeroDaMelhorVolta,
-      numeroKart: resultadoPilotoFirebase.numeroKart,
-      pontos: resultadoPilotoFirebase.pontos,
-      posicao: resultadoPilotoFirebase.posicao,
-      posicaoQualificacao: resultadoPilotoFirebase.posicaoQualificacao,
-      tempoDoPilotoDaFrente: resultadoPilotoFirebase.tempoDoPilotoDaFrente,
-      tempoDoPilotoLider: resultadoPilotoFirebase.tempoDoPilotoLider,
-      tempoQualificacao: resultadoPilotoFirebase.tempoQualificacao,
-      totalDeVoltas: resultadoPilotoFirebase.totalDeVoltas,
-      velocidadeMedia: resultadoPilotoFirebase.velocidadeMedia,
-    );
+      return ResultadoPiloto(
+        id: resultadoPilotoFirebase.id,
+        corrida: corrida,
+        piloto: piloto,
+        isMelhorVoltaCorrida: resultadoPilotoFirebase.isMelhorVoltaCorrida,
+        melhorVolta: resultadoPilotoFirebase.melhorVolta,
+        numeroDaMelhorVolta: resultadoPilotoFirebase.numeroDaMelhorVolta,
+        numeroKart: resultadoPilotoFirebase.numeroKart,
+        pontos: resultadoPilotoFirebase.pontos,
+        posicao: resultadoPilotoFirebase.posicao,
+        posicaoQualificacao: resultadoPilotoFirebase.posicaoQualificacao,
+        tempoDoPilotoDaFrente: resultadoPilotoFirebase.tempoDoPilotoDaFrente,
+        tempoDoPilotoLider: resultadoPilotoFirebase.tempoDoPilotoLider,
+        tempoQualificacao: resultadoPilotoFirebase.tempoQualificacao,
+        totalDeVoltas: resultadoPilotoFirebase.totalDeVoltas,
+        velocidadeMedia: resultadoPilotoFirebase.velocidadeMedia,
+      );
+    } catch (e) {
+      _log.severe('Erro ao buscar resultado piloto', e);
+      throw Exception(e);
+    }
   }
 
   @override
@@ -157,6 +170,7 @@ class ResultadoPilotoRepositoryRemote extends ResultadoPilotoRepository {
         resultadoPilotoFirebase,
       );
     } on Exception catch (e) {
+      _log.severe('Erro ao atualizar resultado piloto', e);
       return Failure(e);
     }
   }

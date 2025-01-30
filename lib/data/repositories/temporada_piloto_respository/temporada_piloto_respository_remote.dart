@@ -4,6 +4,7 @@ import 'package:kart_ti_flutter/data/services/piloto_service.dart';
 import 'package:kart_ti_flutter/data/services/temporada_piloto_service.dart';
 import 'package:kart_ti_flutter/data/services/temporada_service.dart';
 import 'package:kart_ti_flutter/domain/model/temporada_piloto/temporada_piloto.dart';
+import 'package:logging/logging.dart';
 import 'package:result_dart/result_dart.dart';
 
 class TemporadaPilotoRespositoryRemote extends TemporadaPilotoRepository {
@@ -19,6 +20,8 @@ class TemporadaPilotoRespositoryRemote extends TemporadaPilotoRepository {
         _temporadaService = temporadaService,
         _pilotoService = pilotoService;
 
+  final _log = Logger('TemporadaPilotoRespositoryRemote');
+
   @override
   AsyncResult<Unit> createTemporadaPiloto(
       TemporadaPiloto temporadaPiloto) async {
@@ -32,6 +35,7 @@ class TemporadaPilotoRespositoryRemote extends TemporadaPilotoRepository {
       return _temporadaPilotoService
           .createTemporadaPiloto(temporadaPilotoFirebase);
     } on Exception catch (e) {
+      _log.severe('Erro ao criar temporada piloto', e);
       return Failure(e);
     }
   }
@@ -41,6 +45,7 @@ class TemporadaPilotoRespositoryRemote extends TemporadaPilotoRepository {
     try {
       return _temporadaPilotoService.deleteTemporadaPiloto(id);
     } on Exception catch (e) {
+      _log.severe('Erro ao deletar temporada piloto', e);
       return Failure(e);
     }
   }
@@ -59,6 +64,7 @@ class TemporadaPilotoRespositoryRemote extends TemporadaPilotoRepository {
 
       return Success(temporadaPilotos);
     } on Exception catch (e) {
+      _log.severe('Erro ao buscar temporada pilotos', e);
       return Failure(e);
     }
   }
@@ -83,6 +89,7 @@ class TemporadaPilotoRespositoryRemote extends TemporadaPilotoRepository {
 
       return temporadapiloto;
     } catch (e) {
+      _log.severe('Erro ao buscar temporada piloto', e);
       throw Exception(e);
     }
   }
@@ -101,6 +108,7 @@ class TemporadaPilotoRespositoryRemote extends TemporadaPilotoRepository {
       return _temporadaPilotoService
           .updateTemporadaPiloto(temporadaPilotoFirebase);
     } on Exception catch (e) {
+      _log.severe('Erro ao atualizar temporada piloto', e);
       return Failure(e);
     }
   }

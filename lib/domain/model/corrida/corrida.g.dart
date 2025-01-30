@@ -9,18 +9,20 @@ part of 'corrida.dart';
 _$CorridaImpl _$$CorridaImplFromJson(Map<String, dynamic> json) =>
     _$CorridaImpl(
       id: json['id'] as String?,
-      piloto: Piloto.fromJson(json['piloto'] as Map<String, dynamic>),
+      pilotoGanhador: json['pilotoGanhador'] == null
+          ? null
+          : Piloto.fromJson(json['pilotoGanhador'] as Map<String, dynamic>),
       pista: Pista.fromJson(json['pista'] as Map<String, dynamic>),
       temporada: Temporada.fromJson(json['temporada'] as Map<String, dynamic>),
-      tempo: json['tempo'] as String,
-      voltas: (json['voltas'] as num).toInt(),
+      tempo: json['tempo'] as String?,
+      voltas: (json['voltas'] as num?)?.toInt(),
       data: DateTime.parse(json['data'] as String),
     );
 
 Map<String, dynamic> _$$CorridaImplToJson(_$CorridaImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'piloto': instance.piloto,
+      'pilotoGanhador': instance.pilotoGanhador,
       'pista': instance.pista,
       'temporada': instance.temporada,
       'tempo': instance.tempo,

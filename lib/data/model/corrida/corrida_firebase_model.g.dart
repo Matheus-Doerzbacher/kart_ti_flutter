@@ -10,11 +10,11 @@ _$CorridaFirebaseModelImpl _$$CorridaFirebaseModelImplFromJson(
         Map<String, dynamic> json) =>
     _$CorridaFirebaseModelImpl(
       id: json['id'] as String?,
-      idPiloto: json['idPiloto'] as String,
+      idPiloto: json['idPiloto'] as String?,
       idPista: json['idPista'] as String,
       idTemporada: json['idTemporada'] as String,
-      tempo: json['tempo'] as String,
-      voltas: (json['voltas'] as num).toInt(),
+      tempo: json['tempo'] as String?,
+      voltas: (json['voltas'] as num?)?.toInt(),
       data: DateTime.parse(json['data'] as String),
     );
 

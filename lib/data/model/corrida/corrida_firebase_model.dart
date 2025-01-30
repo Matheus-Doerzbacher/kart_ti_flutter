@@ -7,11 +7,11 @@ part 'corrida_firebase_model.g.dart';
 class CorridaFirebaseModel with _$CorridaFirebaseModel {
   const factory CorridaFirebaseModel({
     String? id,
-    required String idPiloto,
+    String? idPiloto,
     required String idPista,
     required String idTemporada,
-    required String tempo,
-    required int voltas,
+    String? tempo,
+    int? voltas,
     required DateTime data,
   }) = _CorridaFirebaseModel;
 

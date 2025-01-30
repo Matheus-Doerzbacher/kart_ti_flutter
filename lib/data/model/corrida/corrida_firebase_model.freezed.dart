@@ -21,11 +21,11 @@ CorridaFirebaseModel _$CorridaFirebaseModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$CorridaFirebaseModel {
   String? get id => throw _privateConstructorUsedError;
-  String get idPiloto => throw _privateConstructorUsedError;
+  String? get idPiloto => throw _privateConstructorUsedError;
   String get idPista => throw _privateConstructorUsedError;
   String get idTemporada => throw _privateConstructorUsedError;
-  String get tempo => throw _privateConstructorUsedError;
-  int get voltas => throw _privateConstructorUsedError;
+  String? get tempo => throw _privateConstructorUsedError;
+  int? get voltas => throw _privateConstructorUsedError;
   DateTime get data => throw _privateConstructorUsedError;
 
   /// Serializes this CorridaFirebaseModel to a JSON map.
@@ -46,11 +46,11 @@ abstract class $CorridaFirebaseModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
-      String idPiloto,
+      String? idPiloto,
       String idPista,
       String idTemporada,
-      String tempo,
-      int voltas,
+      String? tempo,
+      int? voltas,
       DateTime data});
 }
 
@@ -71,11 +71,11 @@ class _$CorridaFirebaseModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? id = freezed,
-    Object? idPiloto = null,
+    Object? idPiloto = freezed,
     Object? idPista = null,
     Object? idTemporada = null,
-    Object? tempo = null,
-    Object? voltas = null,
+    Object? tempo = freezed,
+    Object? voltas = freezed,
     Object? data = null,
   }) {
     return _then(_value.copyWith(
@@ -83,10 +83,10 @@ class _$CorridaFirebaseModelCopyWithImpl<$Res,
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      idPiloto: null == idPiloto
+      idPiloto: freezed == idPiloto
           ? _value.idPiloto
           : idPiloto // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       idPista: null == idPista
           ? _value.idPista
           : idPista // ignore: cast_nullable_to_non_nullable
@@ -95,14 +95,14 @@ class _$CorridaFirebaseModelCopyWithImpl<$Res,
           ? _value.idTemporada
           : idTemporada // ignore: cast_nullable_to_non_nullable
               as String,
-      tempo: null == tempo
+      tempo: freezed == tempo
           ? _value.tempo
           : tempo // ignore: cast_nullable_to_non_nullable
-              as String,
-      voltas: null == voltas
+              as String?,
+      voltas: freezed == voltas
           ? _value.voltas
           : voltas // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -121,11 +121,11 @@ abstract class _$$CorridaFirebaseModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? id,
-      String idPiloto,
+      String? idPiloto,
       String idPista,
       String idTemporada,
-      String tempo,
-      int voltas,
+      String? tempo,
+      int? voltas,
       DateTime data});
 }
 
@@ -143,11 +143,11 @@ class __$$CorridaFirebaseModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? idPiloto = null,
+    Object? idPiloto = freezed,
     Object? idPista = null,
     Object? idTemporada = null,
-    Object? tempo = null,
-    Object? voltas = null,
+    Object? tempo = freezed,
+    Object? voltas = freezed,
     Object? data = null,
   }) {
     return _then(_$CorridaFirebaseModelImpl(
@@ -155,10 +155,10 @@ class __$$CorridaFirebaseModelImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      idPiloto: null == idPiloto
+      idPiloto: freezed == idPiloto
           ? _value.idPiloto
           : idPiloto // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       idPista: null == idPista
           ? _value.idPista
           : idPista // ignore: cast_nullable_to_non_nullable
@@ -167,14 +167,14 @@ class __$$CorridaFirebaseModelImplCopyWithImpl<$Res>
           ? _value.idTemporada
           : idTemporada // ignore: cast_nullable_to_non_nullable
               as String,
-      tempo: null == tempo
+      tempo: freezed == tempo
           ? _value.tempo
           : tempo // ignore: cast_nullable_to_non_nullable
-              as String,
-      voltas: null == voltas
+              as String?,
+      voltas: freezed == voltas
           ? _value.voltas
           : voltas // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -188,11 +188,11 @@ class __$$CorridaFirebaseModelImplCopyWithImpl<$Res>
 class _$CorridaFirebaseModelImpl implements _CorridaFirebaseModel {
   const _$CorridaFirebaseModelImpl(
       {this.id,
-      required this.idPiloto,
+      this.idPiloto,
       required this.idPista,
       required this.idTemporada,
-      required this.tempo,
-      required this.voltas,
+      this.tempo,
+      this.voltas,
       required this.data});
 
   factory _$CorridaFirebaseModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -201,15 +201,15 @@ class _$CorridaFirebaseModelImpl implements _CorridaFirebaseModel {
   @override
   final String? id;
   @override
-  final String idPiloto;
+  final String? idPiloto;
   @override
   final String idPista;
   @override
   final String idTemporada;
   @override
-  final String tempo;
+  final String? tempo;
   @override
-  final int voltas;
+  final int? voltas;
   @override
   final DateTime data;
 
@@ -260,11 +260,11 @@ class _$CorridaFirebaseModelImpl implements _CorridaFirebaseModel {
 abstract class _CorridaFirebaseModel implements CorridaFirebaseModel {
   const factory _CorridaFirebaseModel(
       {final String? id,
-      required final String idPiloto,
+      final String? idPiloto,
       required final String idPista,
       required final String idTemporada,
-      required final String tempo,
-      required final int voltas,
+      final String? tempo,
+      final int? voltas,
       required final DateTime data}) = _$CorridaFirebaseModelImpl;
 
   factory _CorridaFirebaseModel.fromJson(Map<String, dynamic> json) =
@@ -273,15 +273,15 @@ abstract class _CorridaFirebaseModel implements CorridaFirebaseModel {
   @override
   String? get id;
   @override
-  String get idPiloto;
+  String? get idPiloto;
   @override
   String get idPista;
   @override
   String get idTemporada;
   @override
-  String get tempo;
+  String? get tempo;
   @override
-  int get voltas;
+  int? get voltas;
   @override
   DateTime get data;
 

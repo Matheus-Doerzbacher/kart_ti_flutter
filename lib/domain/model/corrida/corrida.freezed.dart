@@ -21,11 +21,11 @@ Corrida _$CorridaFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Corrida {
   String? get id => throw _privateConstructorUsedError;
-  Piloto get piloto => throw _privateConstructorUsedError;
+  Piloto? get pilotoGanhador => throw _privateConstructorUsedError;
   Pista get pista => throw _privateConstructorUsedError;
   Temporada get temporada => throw _privateConstructorUsedError;
-  String get tempo => throw _privateConstructorUsedError;
-  int get voltas => throw _privateConstructorUsedError;
+  String? get tempo => throw _privateConstructorUsedError;
+  int? get voltas => throw _privateConstructorUsedError;
   DateTime get data => throw _privateConstructorUsedError;
 
   /// Serializes this Corrida to a JSON map.
@@ -44,14 +44,14 @@ abstract class $CorridaCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
-      Piloto piloto,
+      Piloto? pilotoGanhador,
       Pista pista,
       Temporada temporada,
-      String tempo,
-      int voltas,
+      String? tempo,
+      int? voltas,
       DateTime data});
 
-  $PilotoCopyWith<$Res> get piloto;
+  $PilotoCopyWith<$Res>? get pilotoGanhador;
   $PistaCopyWith<$Res> get pista;
   $TemporadaCopyWith<$Res> get temporada;
 }
@@ -72,11 +72,11 @@ class _$CorridaCopyWithImpl<$Res, $Val extends Corrida>
   @override
   $Res call({
     Object? id = freezed,
-    Object? piloto = null,
+    Object? pilotoGanhador = freezed,
     Object? pista = null,
     Object? temporada = null,
-    Object? tempo = null,
-    Object? voltas = null,
+    Object? tempo = freezed,
+    Object? voltas = freezed,
     Object? data = null,
   }) {
     return _then(_value.copyWith(
@@ -84,10 +84,10 @@ class _$CorridaCopyWithImpl<$Res, $Val extends Corrida>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      piloto: null == piloto
-          ? _value.piloto
-          : piloto // ignore: cast_nullable_to_non_nullable
-              as Piloto,
+      pilotoGanhador: freezed == pilotoGanhador
+          ? _value.pilotoGanhador
+          : pilotoGanhador // ignore: cast_nullable_to_non_nullable
+              as Piloto?,
       pista: null == pista
           ? _value.pista
           : pista // ignore: cast_nullable_to_non_nullable
@@ -96,14 +96,14 @@ class _$CorridaCopyWithImpl<$Res, $Val extends Corrida>
           ? _value.temporada
           : temporada // ignore: cast_nullable_to_non_nullable
               as Temporada,
-      tempo: null == tempo
+      tempo: freezed == tempo
           ? _value.tempo
           : tempo // ignore: cast_nullable_to_non_nullable
-              as String,
-      voltas: null == voltas
+              as String?,
+      voltas: freezed == voltas
           ? _value.voltas
           : voltas // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -115,9 +115,13 @@ class _$CorridaCopyWithImpl<$Res, $Val extends Corrida>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $PilotoCopyWith<$Res> get piloto {
-    return $PilotoCopyWith<$Res>(_value.piloto, (value) {
-      return _then(_value.copyWith(piloto: value) as $Val);
+  $PilotoCopyWith<$Res>? get pilotoGanhador {
+    if (_value.pilotoGanhador == null) {
+      return null;
+    }
+
+    return $PilotoCopyWith<$Res>(_value.pilotoGanhador!, (value) {
+      return _then(_value.copyWith(pilotoGanhador: value) as $Val);
     });
   }
 
@@ -151,15 +155,15 @@ abstract class _$$CorridaImplCopyWith<$Res> implements $CorridaCopyWith<$Res> {
   @useResult
   $Res call(
       {String? id,
-      Piloto piloto,
+      Piloto? pilotoGanhador,
       Pista pista,
       Temporada temporada,
-      String tempo,
-      int voltas,
+      String? tempo,
+      int? voltas,
       DateTime data});
 
   @override
-  $PilotoCopyWith<$Res> get piloto;
+  $PilotoCopyWith<$Res>? get pilotoGanhador;
   @override
   $PistaCopyWith<$Res> get pista;
   @override
@@ -180,11 +184,11 @@ class __$$CorridaImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? piloto = null,
+    Object? pilotoGanhador = freezed,
     Object? pista = null,
     Object? temporada = null,
-    Object? tempo = null,
-    Object? voltas = null,
+    Object? tempo = freezed,
+    Object? voltas = freezed,
     Object? data = null,
   }) {
     return _then(_$CorridaImpl(
@@ -192,10 +196,10 @@ class __$$CorridaImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      piloto: null == piloto
-          ? _value.piloto
-          : piloto // ignore: cast_nullable_to_non_nullable
-              as Piloto,
+      pilotoGanhador: freezed == pilotoGanhador
+          ? _value.pilotoGanhador
+          : pilotoGanhador // ignore: cast_nullable_to_non_nullable
+              as Piloto?,
       pista: null == pista
           ? _value.pista
           : pista // ignore: cast_nullable_to_non_nullable
@@ -204,14 +208,14 @@ class __$$CorridaImplCopyWithImpl<$Res>
           ? _value.temporada
           : temporada // ignore: cast_nullable_to_non_nullable
               as Temporada,
-      tempo: null == tempo
+      tempo: freezed == tempo
           ? _value.tempo
           : tempo // ignore: cast_nullable_to_non_nullable
-              as String,
-      voltas: null == voltas
+              as String?,
+      voltas: freezed == voltas
           ? _value.voltas
           : voltas // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -225,11 +229,11 @@ class __$$CorridaImplCopyWithImpl<$Res>
 class _$CorridaImpl implements _Corrida {
   const _$CorridaImpl(
       {this.id,
-      required this.piloto,
+      this.pilotoGanhador,
       required this.pista,
       required this.temporada,
-      required this.tempo,
-      required this.voltas,
+      this.tempo,
+      this.voltas,
       required this.data});
 
   factory _$CorridaImpl.fromJson(Map<String, dynamic> json) =>
@@ -238,21 +242,21 @@ class _$CorridaImpl implements _Corrida {
   @override
   final String? id;
   @override
-  final Piloto piloto;
+  final Piloto? pilotoGanhador;
   @override
   final Pista pista;
   @override
   final Temporada temporada;
   @override
-  final String tempo;
+  final String? tempo;
   @override
-  final int voltas;
+  final int? voltas;
   @override
   final DateTime data;
 
   @override
   String toString() {
-    return 'Corrida(id: $id, piloto: $piloto, pista: $pista, temporada: $temporada, tempo: $tempo, voltas: $voltas, data: $data)';
+    return 'Corrida(id: $id, pilotoGanhador: $pilotoGanhador, pista: $pista, temporada: $temporada, tempo: $tempo, voltas: $voltas, data: $data)';
   }
 
   @override
@@ -261,7 +265,8 @@ class _$CorridaImpl implements _Corrida {
         (other.runtimeType == runtimeType &&
             other is _$CorridaImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.piloto, piloto) || other.piloto == piloto) &&
+            (identical(other.pilotoGanhador, pilotoGanhador) ||
+                other.pilotoGanhador == pilotoGanhador) &&
             (identical(other.pista, pista) || other.pista == pista) &&
             (identical(other.temporada, temporada) ||
                 other.temporada == temporada) &&
@@ -273,7 +278,7 @@ class _$CorridaImpl implements _Corrida {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, piloto, pista, temporada, tempo, voltas, data);
+      runtimeType, id, pilotoGanhador, pista, temporada, tempo, voltas, data);
 
   /// Create a copy of Corrida
   /// with the given fields replaced by the non-null parameter values.
@@ -294,11 +299,11 @@ class _$CorridaImpl implements _Corrida {
 abstract class _Corrida implements Corrida {
   const factory _Corrida(
       {final String? id,
-      required final Piloto piloto,
+      final Piloto? pilotoGanhador,
       required final Pista pista,
       required final Temporada temporada,
-      required final String tempo,
-      required final int voltas,
+      final String? tempo,
+      final int? voltas,
       required final DateTime data}) = _$CorridaImpl;
 
   factory _Corrida.fromJson(Map<String, dynamic> json) = _$CorridaImpl.fromJson;
@@ -306,15 +311,15 @@ abstract class _Corrida implements Corrida {
   @override
   String? get id;
   @override
-  Piloto get piloto;
+  Piloto? get pilotoGanhador;
   @override
   Pista get pista;
   @override
   Temporada get temporada;
   @override
-  String get tempo;
+  String? get tempo;
   @override
-  int get voltas;
+  int? get voltas;
   @override
   DateTime get data;
 

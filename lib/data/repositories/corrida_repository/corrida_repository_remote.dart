@@ -5,6 +5,7 @@ import 'package:kart_ti_flutter/data/services/piloto_service.dart';
 import 'package:kart_ti_flutter/data/services/pista_service.dart';
 import 'package:kart_ti_flutter/data/services/temporada_service.dart';
 import 'package:kart_ti_flutter/domain/model/corrida/corrida.dart';
+import 'package:logging/logging.dart';
 import 'package:result_dart/result_dart.dart';
 
 class CorridaRepositoryRemote extends CorridaRepository {
@@ -22,11 +23,14 @@ class CorridaRepositoryRemote extends CorridaRepository {
         _pilotoService = pilotoService,
         _temporadaService = temporadaService,
         _pistaService = pistaService;
+
+  final _log = Logger('CorridaRepositoryRemote');
+
   @override
   AsyncResult<Unit> createCorrida(Corrida corrida) async {
     try {
       final corridaFirebase = CorridaFirebaseModel(
-          idPiloto: corrida.piloto.id!,
+          idPiloto: corrida.pilotoGanhador?.id,
           idPista: corrida.pista.id!,
           idTemporada: corrida.temporada.id!,
           tempo: corrida.tempo,
@@ -35,6 +39,7 @@ class CorridaRepositoryRemote extends CorridaRepository {
 
       return _corridaService.createCorrida(corridaFirebase);
     } on Exception catch (e) {
+      _log.severe('Erro ao criar corrida', e);
       return Failure(e);
     }
   }
@@ -44,6 +49,7 @@ class CorridaRepositoryRemote extends CorridaRepository {
     try {
       return _corridaService.deleteCorrida(id);
     } on Exception catch (e) {
+      _log.severe('Erro ao deletar corrida', e);
       return Failure(e);
     }
   }
@@ -63,6 +69,7 @@ class CorridaRepositoryRemote extends CorridaRepository {
 
       return Success(corridas);
     } on Exception catch (e) {
+      _log.severe('Erro ao buscar corridas por piloto', e);
       return Failure(e);
     }
   }
@@ -82,6 +89,7 @@ class CorridaRepositoryRemote extends CorridaRepository {
 
       return Success(corridas);
     } on Exception catch (e) {
+      _log.severe('Erro ao buscar corridas por temporada', e);
       return Failure(e);
     }
   }
@@ -90,7 +98,7 @@ class CorridaRepositoryRemote extends CorridaRepository {
   AsyncResult<Unit> updateCorrida(Corrida corrida) async {
     try {
       final corridaFirebase = CorridaFirebaseModel(
-        idPiloto: corrida.piloto.id!,
+        idPiloto: corrida.pilotoGanhador?.id,
         idPista: corrida.pista.id!,
         idTemporada: corrida.temporada.id!,
         tempo: corrida.tempo,
@@ -99,29 +107,35 @@ class CorridaRepositoryRemote extends CorridaRepository {
       );
       return _corridaService.updateCorrida(corridaFirebase);
     } on Exception catch (e) {
+      _log.severe('Erro ao atualizar corrida', e);
       return Failure(e);
     }
   }
 
   Future<Corrida> _getCorrida(CorridaFirebaseModel corridaFirebase) async {
-    final piloto = await _pilotoService //
-        .getPilotoById(corridaFirebase.idPiloto)
-        .getOrThrow();
-    final pista = await _pistaService //
-        .getPistaById(corridaFirebase.idPista)
-        .getOrThrow();
-    final temporada = await _temporadaService //
-        .getTemporadaById(corridaFirebase.idTemporada)
-        .getOrThrow();
+    try {
+      final piloto = await _pilotoService //
+          .getPilotoById(corridaFirebase.idPiloto)
+          .getOrNull();
+      final pista = await _pistaService //
+          .getPistaById(corridaFirebase.idPista)
+          .getOrThrow();
+      final temporada = await _temporadaService //
+          .getTemporadaById(corridaFirebase.idTemporada)
+          .getOrThrow();
 
-    return Corrida(
-      id: corridaFirebase.id,
-      piloto: piloto,
-      pista: pista,
-      temporada: temporada,
-      tempo: corridaFirebase.tempo,
-      voltas: corridaFirebase.voltas,
-      data: corridaFirebase.data,
-    );
+      return Corrida(
+        id: corridaFirebase.id,
+        pilotoGanhador: piloto,
+        pista: pista,
+        temporada: temporada,
+        tempo: corridaFirebase.tempo,
+        voltas: corridaFirebase.voltas,
+        data: corridaFirebase.data,
+      );
+    } catch (e) {
+      _log.severe('Erro ao buscar corrida', e);
+      throw Exception(e);
+    }
   }
 }

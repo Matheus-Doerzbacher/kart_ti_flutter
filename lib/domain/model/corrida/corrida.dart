@@ -10,11 +10,11 @@ part 'corrida.g.dart';
 class Corrida with _$Corrida {
   const factory Corrida({
     String? id,
-    required Piloto piloto,
+    Piloto? pilotoGanhador,
     required Pista pista,
     required Temporada temporada,
-    required String tempo,
-    required int voltas,
+    String? tempo,
+    int? voltas,
     required DateTime data,
   }) = _Corrida;
 
