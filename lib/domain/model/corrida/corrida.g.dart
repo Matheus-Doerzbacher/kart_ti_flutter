@@ -17,6 +17,9 @@ _$CorridaImpl _$$CorridaImplFromJson(Map<String, dynamic> json) =>
       tempo: json['tempo'] as String?,
       voltas: (json['voltas'] as num?)?.toInt(),
       data: DateTime.parse(json['data'] as String),
+      resultados: (json['resultados'] as List<dynamic>?)
+          ?.map((e) => ResultadoPiloto.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$CorridaImplToJson(_$CorridaImpl instance) =>
@@ -28,4 +31,5 @@ Map<String, dynamic> _$$CorridaImplToJson(_$CorridaImpl instance) =>
       'tempo': instance.tempo,
       'voltas': instance.voltas,
       'data': instance.data.toIso8601String(),
+      'resultados': instance.resultados,
     };

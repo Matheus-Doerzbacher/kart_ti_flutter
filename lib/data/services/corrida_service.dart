@@ -16,13 +16,13 @@ class CorridaService {
       final data = corrida.data();
       if (data != null) {
         // Supondo que o campo de data/hora seja chamado 'timestamp'
-        final timestamp = data['timestamp'] as Timestamp;
+        final timestamp = data['data'] as Timestamp;
         final dateTime = timestamp.toDate();
-        data['timestamp'] = dateTime.toIso8601String(); // Converte para String
+        data['data'] = dateTime.toIso8601String(); // Converte para String
       }
       return Success(CorridaFirebaseModel.fromJson(data!));
     } on Exception catch (e) {
-      _log.severe('Erro ao buscar corrida', e);
+      _log.warning('Erro ao buscar corrida', e);
       return Failure(e);
     }
   }

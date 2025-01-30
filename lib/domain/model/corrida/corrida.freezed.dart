@@ -27,6 +27,7 @@ mixin _$Corrida {
   String? get tempo => throw _privateConstructorUsedError;
   int? get voltas => throw _privateConstructorUsedError;
   DateTime get data => throw _privateConstructorUsedError;
+  List<ResultadoPiloto>? get resultados => throw _privateConstructorUsedError;
 
   /// Serializes this Corrida to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,7 +50,8 @@ abstract class $CorridaCopyWith<$Res> {
       Temporada temporada,
       String? tempo,
       int? voltas,
-      DateTime data});
+      DateTime data,
+      List<ResultadoPiloto>? resultados});
 
   $PilotoCopyWith<$Res>? get pilotoGanhador;
   $PistaCopyWith<$Res> get pista;
@@ -78,6 +80,7 @@ class _$CorridaCopyWithImpl<$Res, $Val extends Corrida>
     Object? tempo = freezed,
     Object? voltas = freezed,
     Object? data = null,
+    Object? resultados = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -108,6 +111,10 @@ class _$CorridaCopyWithImpl<$Res, $Val extends Corrida>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      resultados: freezed == resultados
+          ? _value.resultados
+          : resultados // ignore: cast_nullable_to_non_nullable
+              as List<ResultadoPiloto>?,
     ) as $Val);
   }
 
@@ -160,7 +167,8 @@ abstract class _$$CorridaImplCopyWith<$Res> implements $CorridaCopyWith<$Res> {
       Temporada temporada,
       String? tempo,
       int? voltas,
-      DateTime data});
+      DateTime data,
+      List<ResultadoPiloto>? resultados});
 
   @override
   $PilotoCopyWith<$Res>? get pilotoGanhador;
@@ -190,6 +198,7 @@ class __$$CorridaImplCopyWithImpl<$Res>
     Object? tempo = freezed,
     Object? voltas = freezed,
     Object? data = null,
+    Object? resultados = freezed,
   }) {
     return _then(_$CorridaImpl(
       id: freezed == id
@@ -220,6 +229,10 @@ class __$$CorridaImplCopyWithImpl<$Res>
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      resultados: freezed == resultados
+          ? _value._resultados
+          : resultados // ignore: cast_nullable_to_non_nullable
+              as List<ResultadoPiloto>?,
     ));
   }
 }
@@ -234,7 +247,9 @@ class _$CorridaImpl implements _Corrida {
       required this.temporada,
       this.tempo,
       this.voltas,
-      required this.data});
+      required this.data,
+      final List<ResultadoPiloto>? resultados})
+      : _resultados = resultados;
 
   factory _$CorridaImpl.fromJson(Map<String, dynamic> json) =>
       _$$CorridaImplFromJson(json);
@@ -253,10 +268,19 @@ class _$CorridaImpl implements _Corrida {
   final int? voltas;
   @override
   final DateTime data;
+  final List<ResultadoPiloto>? _resultados;
+  @override
+  List<ResultadoPiloto>? get resultados {
+    final value = _resultados;
+    if (value == null) return null;
+    if (_resultados is EqualUnmodifiableListView) return _resultados;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'Corrida(id: $id, pilotoGanhador: $pilotoGanhador, pista: $pista, temporada: $temporada, tempo: $tempo, voltas: $voltas, data: $data)';
+    return 'Corrida(id: $id, pilotoGanhador: $pilotoGanhador, pista: $pista, temporada: $temporada, tempo: $tempo, voltas: $voltas, data: $data, resultados: $resultados)';
   }
 
   @override
@@ -272,13 +296,23 @@ class _$CorridaImpl implements _Corrida {
                 other.temporada == temporada) &&
             (identical(other.tempo, tempo) || other.tempo == tempo) &&
             (identical(other.voltas, voltas) || other.voltas == voltas) &&
-            (identical(other.data, data) || other.data == data));
+            (identical(other.data, data) || other.data == data) &&
+            const DeepCollectionEquality()
+                .equals(other._resultados, _resultados));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, pilotoGanhador, pista, temporada, tempo, voltas, data);
+      runtimeType,
+      id,
+      pilotoGanhador,
+      pista,
+      temporada,
+      tempo,
+      voltas,
+      data,
+      const DeepCollectionEquality().hash(_resultados));
 
   /// Create a copy of Corrida
   /// with the given fields replaced by the non-null parameter values.
@@ -304,7 +338,8 @@ abstract class _Corrida implements Corrida {
       required final Temporada temporada,
       final String? tempo,
       final int? voltas,
-      required final DateTime data}) = _$CorridaImpl;
+      required final DateTime data,
+      final List<ResultadoPiloto>? resultados}) = _$CorridaImpl;
 
   factory _Corrida.fromJson(Map<String, dynamic> json) = _$CorridaImpl.fromJson;
 
@@ -322,6 +357,8 @@ abstract class _Corrida implements Corrida {
   int? get voltas;
   @override
   DateTime get data;
+  @override
+  List<ResultadoPiloto>? get resultados;
 
   /// Create a copy of Corrida
   /// with the given fields replaced by the non-null parameter values.

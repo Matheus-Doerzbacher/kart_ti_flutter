@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kart_ti_flutter/ui/home/home_viewmodel.dart';
-import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
   final HomeViewModel viewModel;
@@ -24,9 +23,9 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           ListenableBuilder(
-            listenable: widget.viewModel.load,
+            listenable: widget.viewModel.loadCorridas,
             builder: (context, _) {
-              if (widget.viewModel.load.running) {
+              if (widget.viewModel.loadCorridas.running) {
                 return const CircularProgressIndicator();
               }
               return Expanded(
@@ -36,8 +35,42 @@ class _HomePageState extends State<HomePage> {
                     final corrida = widget.viewModel.corridas[index];
                     return ListTile(
                       title: Text(corrida.pilotoGanhador?.nome ?? ''),
-                      subtitle: Text(
-                        DateFormat('dd/MM/yyyy').format(corrida.data),
+                      subtitle: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                corrida.resultados?[0].posicao.toString() ?? '',
+                              ),
+                              Text(' - '),
+                              Text(
+                                corrida.resultados?[0].piloto.nome ?? '',
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                corrida.resultados?[1].posicao.toString() ?? '',
+                              ),
+                              Text(' - '),
+                              Text(
+                                corrida.resultados?[1].piloto.nome ?? '',
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                corrida.resultados?[2].posicao.toString() ?? '',
+                              ),
+                              Text(' - '),
+                              Text(
+                                corrida.resultados?[2].piloto.nome ?? '',
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     );
                   },
@@ -50,13 +83,14 @@ class _HomePageState extends State<HomePage> {
             builder: (context, _) {
               return Expanded(
                 child: ListView.builder(
-                  itemCount: widget.viewModel.temporadaPilotos.length,
+                  itemCount: widget.viewModel.temporadaPilotosPontos.length,
                   itemBuilder: (context, index) {
                     final temporadaPiloto =
-                        widget.viewModel.temporadaPilotos[index];
+                        widget.viewModel.temporadaPilotosPontos[index];
                     return ListTile(
-                      title: Text(temporadaPiloto.piloto.nome),
-                      subtitle: Text(temporadaPiloto.pontos.toString()),
+                      title: Text(
+                        '${temporadaPiloto.piloto.nome} - Pontos: ${temporadaPiloto.pontos}',
+                      ),
                     );
                   },
                 ),

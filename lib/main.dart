@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
           corridaRepository: context.read(),
           temporadaRepository: context.read(),
           temporadaPilotoRepository: context.read(),
+          corridasGetHomeUseCase: context.read(),
         ),
       ),
     );

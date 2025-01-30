@@ -16,6 +16,7 @@ import 'package:kart_ti_flutter/data/services/pista_service.dart';
 import 'package:kart_ti_flutter/data/services/resultado_piloto_service.dart';
 import 'package:kart_ti_flutter/data/services/temporada_piloto_service.dart';
 import 'package:kart_ti_flutter/data/services/temporada_service.dart';
+import 'package:kart_ti_flutter/domain/use_cases/corridas_get_home_use_case.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
@@ -80,6 +81,15 @@ List<SingleChildWidget> get providersRemote {
       create: (context) => TemporadaRepositoryRemote(
         temporadaService: context.read(),
       ) as TemporadaRepository,
+    ),
+
+    // Use Cases
+    Provider(
+      create: (context) => CorridasGetHomeUseCase(
+        corridaRepository: context.read(),
+        temporadaRepository: context.read(),
+        resultadoPilotoRepository: context.read(),
+      ),
     ),
   ];
 }

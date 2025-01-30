@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kart_ti_flutter/domain/model/piloto/piloto.dart';
 import 'package:kart_ti_flutter/domain/model/pista/pista.dart';
+import 'package:kart_ti_flutter/domain/model/resultado_piloto/resultado_piloto.dart';
 import 'package:kart_ti_flutter/domain/model/temporada/temporada.dart';
 
 part 'corrida.freezed.dart';
@@ -16,6 +17,7 @@ class Corrida with _$Corrida {
     String? tempo,
     int? voltas,
     required DateTime data,
+    List<ResultadoPiloto>? resultados,
   }) = _Corrida;
 
   factory Corrida.fromJson(Map<String, dynamic> json) =>
