@@ -26,9 +26,11 @@ class HomeViewModel extends ChangeNotifier {
         _temporadaPilotoRepository = temporadaPilotoRepository,
         _corridasGetHomeUseCase = corridasGetHomeUseCase {
     loadCorridas = Command0(_loadCorridas)..execute();
+    loadClasificacao = Command0(_loadClasificacao)..execute();
   }
 
   late Command0 loadCorridas;
+  late Command0 loadClasificacao;
 
   List<TemporadaPiloto> _temporadaPilotosPontos = [];
   List<TemporadaPiloto> get temporadaPilotosPontos => _temporadaPilotosPontos;
@@ -42,13 +44,22 @@ class HomeViewModel extends ChangeNotifier {
 
   AsyncResult<Unit> _loadCorridas() async {
     try {
-      final temporadaAtual =
-          await _temporadaRepository.getTemporadaAtual().getOrThrow();
-
-      final corridas =
-          await _corridasGetHomeUseCase.getCorridasComResultados().getOrThrow();
+      final corridas = await _corridasGetHomeUseCase
+          .getCorridasTemporadaAtualComResultados()
+          .getOrThrow();
 
       _corridas = corridas;
+
+      return Success(unit);
+    } finally {
+      notifyListeners();
+    }
+  }
+
+  AsyncResult<Unit> _loadClasificacao() async {
+    try {
+      final temporadaAtual =
+          await _temporadaRepository.getTemporadaAtual().getOrThrow();
 
       final temporadaPilotos = await _temporadaPilotoRepository
           .getTemporadaPilotosByTemporada(temporadaAtual.id!)

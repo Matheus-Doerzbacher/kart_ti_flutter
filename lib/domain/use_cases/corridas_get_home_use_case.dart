@@ -20,7 +20,7 @@ class CorridasGetHomeUseCase {
 
   final _log = Logger('CorridasGetHomeUseCase');
 
-  AsyncResult<List<Corrida>> getCorridasComResultados() async {
+  AsyncResult<List<Corrida>> getCorridasTemporadaAtualComResultados() async {
     try {
       final temporadaAtual =
           await _temporadaRepository.getTemporadaAtual().getOrThrow();
@@ -42,7 +42,7 @@ class CorridasGetHomeUseCase {
 
             resultados.sort((a, b) => a.posicao.compareTo(b.posicao));
 
-            return corrida.copyWith(resultados: resultados.take(3).toList());
+            return corrida.copyWith(resultados: resultados);
           },
         ),
       );

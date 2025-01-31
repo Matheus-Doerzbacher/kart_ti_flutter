@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:kart_ti_flutter/domain/model/corrida/corrida.dart';
+import 'package:kart_ti_flutter/domain/model/temporada_piloto/temporada_piloto.dart';
 
-class CardHome extends StatelessWidget {
-  final Corrida corrida;
-  const CardHome({super.key, required this.corrida});
+class CardResultadosHome extends StatelessWidget {
+  final List<TemporadaPiloto> resultadoPiloto;
+  final bool isVitorias;
+
+  const CardResultadosHome({
+    super.key,
+    required this.resultadoPiloto,
+    this.isVitorias = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +24,10 @@ class CardHome extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Corrida na pista ${corrida.pista.nome}',
+              'Clasificação geral',
               style: textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
-            ),
-            Text(
-              DateFormat('dd \'de\' MMMM \'de\' yyyy').format(corrida.data),
-              style: textTheme.labelMedium,
             ),
             const SizedBox(height: 20),
             Table(
@@ -41,16 +42,21 @@ class CardHome extends StatelessWidget {
                   children: [
                     _buildTableCell('Pos', isBold: true),
                     _buildTableCell('Piloto', isBold: true),
-                    _buildTableCell('Melhor Volta', isBold: true),
+                    _buildTableCell(isVitorias ? 'Vitorias' : 'Pontos',
+                        isBold: true),
                   ],
                 ),
-                ...corrida.resultados!.map(
-                  (resultado) {
+                ...resultadoPiloto.asMap().entries.map(
+                  (entry) {
+                    final index = entry.key;
+                    final resultado = entry.value;
                     return TableRow(
                       children: [
-                        _buildTableCell(resultado.posicao.toString()),
+                        _buildTableCell((index + 1).toString()),
                         _buildTableCell(resultado.piloto.nome),
-                        _buildTableCell(resultado.melhorVolta),
+                        _buildTableCell(isVitorias
+                            ? resultado.vitorias.toString()
+                            : resultado.pontos.toString()),
                       ],
                     );
                   },
@@ -62,8 +68,6 @@ class CardHome extends StatelessWidget {
       ),
     );
   }
-
-  // ... existing code ...
 
   Widget _buildTableCell(String text, {bool isBold = false}) {
     return TableCell(
