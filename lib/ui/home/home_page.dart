@@ -90,6 +90,25 @@ class _HomePageState extends State<HomePage> {
                   );
                 },
               ),
+              const SizedBox(height: 50),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Classificação de Pilotos',
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Theme.of(context).colorScheme.secondary,
+                    ),
+                    onPressed: () {},
+                    child: Text('Ver Todas'),
+                  )
+                ],
+              ),
 
               // ListenableBuilder(
               //   listenable: widget.viewModel.loadCorridas,
